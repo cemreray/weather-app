@@ -42,3 +42,21 @@ def get_weather (latitude, longitude):
     data = response.json()
 
     return data["current_weather"]
+
+def get_forecast(latitude, longitude):
+    url = "https://api.open-meteo.com/v1/forecast"
+
+    params = {
+        "latitude": latitude,
+        "longitude": longitude,
+        "daily": "temperature_2m_max,temperature_2m_min,weather_code",
+        "forecast_days": 5,
+        "timezone": "auto"
+    }
+
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+
+    data = response.json()
+
+    return data["daily"]

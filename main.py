@@ -1,4 +1,4 @@
-from weather import get_coordinates, get_weather
+from weather import get_coordinates, get_weather, get_forecast
 
 
 def main():
@@ -22,14 +22,32 @@ def main():
     else:
         weather_emoji = "🌩️ Severe weather"
 
+    forecast = get_forecast(city["latitude"], city["longitude"])
+
     print()
-    print(f"Weather for {city['name']}, {city['country']}")
-    print("-" * 40)
-    print(f"Temperature: {weather['temperature']}°C")
-    print(f"Weather: {weather_emoji}")
-    print(f"Wind speed: {weather['windspeed']} km/h")
-    print(f"Wind direction: {weather['winddirection']}°")
-    print(f"Time: {weather['time']}")
+    print("*" * 45)
+    print("           WEATHER APPLICATION")
+    print("*" * 45)
+
+    print(f"Location       : {city['name']}, {city['country']}")
+    print(f"Condition      : {weather_emoji}")
+    print(f"Temperature    : {weather['temperature']}°C")
+    print(f"Wind Speed     : {weather['windspeed']} km/h")
+    print(f"Wind Direction : {weather['winddirection']}°")
+    print(f"Time           : {weather['time']}")
+
+    print("*" * 45)
+
+    print()
+    print("5-Day Forecast")
+    print("-" * 45)
+
+    for i in range(5):
+        date = forecast["time"][i]
+        max_temp = forecast["temperature_2m_max"][i]
+        min_temp = forecast["temperature_2m_min"][i]
+
+        print(f"{date} | Max: {max_temp}°C | Min: {min_temp}°C")
 
 
 if __name__ == "__main__":
