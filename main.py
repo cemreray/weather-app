@@ -13,7 +13,7 @@ def main():
     weather = get_weather(city["latitude"], city["longitude"])
 
     print()
-    print(f"Weather for {city['name']},city['country]")
+    print(f"Weather for {city['name']}, {city['country']}")
     print("-" * 40)
     print(f"Temperature:{weather['temperature']}°C")
     print(f"Wind speed: {weather['windspeed']}km/h")
